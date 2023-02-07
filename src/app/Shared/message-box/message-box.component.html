@@ -1,0 +1,8 @@
+<mat-card *ngIf="_color && _textcolor" [ngStyle]="{ color: _textcolor, 'background-color': _color }">
+  <div fxLayout="row" fxLayoutGap="4px">
+    <mat-icon>info</mat-icon>
+    <span>
+      {{ _msg }}
+    </span>
+  </div>
+</mat-card>

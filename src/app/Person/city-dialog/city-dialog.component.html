@@ -1,0 +1,39 @@
+﻿<h1 dir="rtl" mat-dialog-title>{{title}}</h1>
+<form name="form" (ngSubmit)="f.form.valid && onSubmit()" #f="ngForm" novalidate>
+<div mat-dialog-content>
+<div class="loading-shade" *ngIf="isLoadingResults">
+<mat-spinner *ngIf="isLoadingResults"></mat-spinner>
+</div>
+<div fxLayout="column" fxLayout.xs="column" fxLayoutGap="8px" fxLayoutAlign="start auto">
+<app-province-selector [setDefault]="false"  [selectedID]="model.provinceId" (selected)="onProvinceIdSelected($event)" fxFlex></app-province-selector>
+ <mat-form-field fxFlex>
+<mat-label>شهر</mat-label>
+<input matInput id="name" name="name" [(ngModel)]="model.name" required 
+ minlength="2" maxlength="50" type="text" autocomplete="off" #f3="ngModel">
+<mat-error *ngIf="  f3.invalid && (f3.dirty || f3.touched) && f3.errors?.['required']">
+<strong>شهر</strong> اجباری است.
+</mat-error>
+<mat-error *ngIf="  f3.invalid && (f3.dirty || f3.touched) && f3.errors?.['minlength']">
+<strong>شهر</strong> حداقل 2 حرفی است.
+</mat-error>
+</mat-form-field>
+ <mat-form-field fxFlex>
+<mat-label>چیدمان</mat-label>
+<input matInput id="showIndex" name="showIndex" [(ngModel)]="model.showIndex" required 
+ type="number" maxlength="10"  pattern="^[+]?([0-9]+(?:[\.][0-9]*)?|\.[0-9]+)$" autocomplete="off" #f4="ngModel"> 
+<mat-error *ngIf="  f4.invalid && (f4.dirty || f4.touched) && f4.errors?.['required']">
+<strong>چیدمان</strong> اجباری است.
+</mat-error>
+<mat-error *ngIf="  f4.invalid && (f4.dirty || f4.touched) && f4.errors?.['pattern']">
+<strong>چیدمان</strong> باید با ارقام ثبت شود.
+</mat-error>
+</mat-form-field>
+<mat-checkbox fxFlex [(ngModel)]="model.avb" name="avb">فعال</mat-checkbox>
+</div>
+<mat-dialog-actions>
+<button mat-raised-button *ngIf="isEdit" [disabled]="!f.valid" type="submit">ویرایش</button>
+<button mat-raised-button *ngIf="!isEdit" [disabled]="!f.valid" type="submit">ثبت</button>
+<button mat-raised-button (click)="onNoClick()" type="reset">انصراف</button>
+</mat-dialog-actions>
+</div>
+</form>

@@ -1,0 +1,19 @@
+﻿<h1 dir="rtl" mat-dialog-title>{{title}}</h1>
+<form name="form" (ngSubmit)="f.form.valid && onSubmit()" #f="ngForm" novalidate>
+<div mat-dialog-content>
+<div class="loading-shade" *ngIf="isLoadingResults">
+<mat-spinner *ngIf="isLoadingResults"></mat-spinner>
+</div>
+<div fxLayout="column" fxLayout.xs="column" fxLayoutGap="8px" fxLayoutAlign="start auto">
+<app-station-selector [setDefault]="false"  [selectedID]="model.stationId" (selected)="onStationIdSelected($event)" fxFlex></app-station-selector>
+<app-app-user-selector [setDefault]="false"  [selectedID]="model.appUserId" (selected)="onAppUserIdSelected($event)" fxFlex></app-app-user-selector>
+<mat-checkbox fxFlex [(ngModel)]="model.defaultReceiver" name="defaultReceiver">گیرنده پیش فرض</mat-checkbox>
+<mat-checkbox fxFlex [(ngModel)]="model.active" name="active">فعال</mat-checkbox>
+</div>
+<mat-dialog-actions>
+<button mat-raised-button *ngIf="isEdit" [disabled]="!f.valid" type="submit">ویرایش</button>
+<button mat-raised-button *ngIf="!isEdit" [disabled]="!f.valid" type="submit">ثبت</button>
+<button mat-raised-button (click)="onNoClick()" type="reset">انصراف</button>
+</mat-dialog-actions>
+</div>
+</form>

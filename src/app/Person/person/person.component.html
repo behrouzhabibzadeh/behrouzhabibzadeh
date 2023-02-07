@@ -1,0 +1,278 @@
+﻿<div class="container ">
+<div class="loading-shade" *ngIf="isLoadingResults">
+<mat-spinner *ngIf="isLoadingResults"></mat-spinner>
+</div>
+<div class="header">
+<h1> {{prefix}} </h1>
+</div>
+<div fxLayout="row" fxLayout.xs="column" fxLayoutGap="4px" fxLayoutAlign="start center">
+<div fxFlex="0 0 auto">
+<button  class="mat-elevation-z2" matTooltip="پاک کردن فیلتر‌های جستجو"  (click)="onSearchRefresh()" mat-icon-button aria-label="Refresh">
+<mat-icon>refresh</mat-icon>
+</button>
+</div>
+<div fxFlex="0 0 auto">
+<button  class="mat-elevation-z2" matTooltip="جستجو"  (click)="getListData()" mat-icon-button aria-label="Search">
+<mat-icon>search</mat-icon>
+</button>
+</div>
+<div fxFlex="0 0 auto">
+<div fxLayout="row" fxLayoutGap="4px" fxLayoutAlign="start center">
+<mat-checkbox [(ngModel)]="search.hasfirst" color="primary"></mat-checkbox>
+<mat-form-field>
+<mat-label>نام</mat-label>
+<input matInput [(ngModel)]="search.first" autocomplete="off" placeholder="نام">
+</mat-form-field>
+</div>
+</div>
+<div fxFlex="0 0 auto">
+<div fxLayout="row" fxLayoutGap="4px" fxLayoutAlign="start center">
+<mat-checkbox [(ngModel)]="search.haslast" color="primary"></mat-checkbox>
+<mat-form-field>
+<mat-label>نام خانوادگی</mat-label>
+<input matInput [(ngModel)]="search.last" autocomplete="off" placeholder="نام خانوادگی">
+</mat-form-field>
+</div>
+</div>
+<div fxFlex="0 0 auto">
+<div fxLayout="row" fxLayoutGap="4px" fxLayoutAlign="start center">
+<mat-checkbox [(ngModel)]="search.hasnationalCode" color="primary"></mat-checkbox>
+<mat-form-field>
+<mat-label>کدملی/ شماره گذرنامه</mat-label>
+<input matInput [(ngModel)]="search.nationalCode" autocomplete="off" placeholder="کدملی/ شماره گذرنامه">
+</mat-form-field>
+</div>
+</div>
+<div fxFlex="0 0 auto">
+<div fxLayout="row" fxLayoutGap="4px" fxLayoutAlign="start center">
+<mat-checkbox [(ngModel)]="search.hasmobile" color="primary"></mat-checkbox>
+<mat-form-field>
+<mat-label>تلفن همراه</mat-label>
+<input matInput [(ngModel)]="search.mobile" autocomplete="off" placeholder="تلفن همراه">
+</mat-form-field>
+</div>
+</div>
+<div fxFlex="0 0 auto">
+<div fxLayout="row" fxLayoutGap="4px" fxLayoutAlign="start center">
+<mat-checkbox [(ngModel)]="search.hasorganizationId" color="primary"></mat-checkbox>
+<app-organization-selector [setDefault]="false"  [selectedID]="search.organizationId" (selected)="onSearchOrganizationIdSelected($event)" fxFlex></app-organization-selector>
+
+</div>
+</div>
+<div fxFlex="0 0 auto">
+<div fxLayout="row" fxLayoutGap="4px" fxLayoutAlign="start center">
+<mat-checkbox [(ngModel)]="search.haspersonGroupId" color="primary"></mat-checkbox>
+<app-person-group-selector [setDefault]="false"  [selectedID]="search.personGroupId" (selected)="onSearchPersonGroupIdSelected($event)" fxFlex></app-person-group-selector>
+
+</div>
+</div>
+<div fxFlex="0 0 auto">
+<div fxLayout="row" fxLayoutGap="4px" fxLayoutAlign="start center">
+<mat-checkbox [(ngModel)]="search.hasprovinceId" color="primary"></mat-checkbox>
+<app-province-selector [setDefault]="false"  [selectedID]="search.provinceId" (selected)="onSearchProvinceIdSelected($event)" fxFlex></app-province-selector>
+
+</div>
+</div>
+<div fxFlex="0 0 auto">
+<div fxLayout="row" fxLayoutGap="4px" fxLayoutAlign="start center">
+<mat-checkbox [(ngModel)]="search.hascityId" color="primary"></mat-checkbox>
+<app-city-selector [setDefault]="false"  [selectedID]="search.cityId" (selected)="onSearchCityIdSelected($event)" fxFlex></app-city-selector>
+
+</div>
+</div>
+</div>
+<div class="table-container mat-elevation-z3 ">
+<table mat-table [dataSource]="data" class="mat-elevation-z8" matSort matSortActive="created"
+matSortDisableClear matSortDirection="desc">
+<ng-container matColumnDef="id">
+<th mat-header-cell *matHeaderCellDef mat-sort-header>ثبت</th>
+<td mat-cell *matCellDef="let row">{{row.id}}  </td>
+</ng-container>
+<ng-container matColumnDef="code">
+<th mat-header-cell *matHeaderCellDef mat-sort-header>یکتا</th>
+<td mat-cell *matCellDef="let row">{{row.code}}  </td>
+</ng-container>
+<ng-container matColumnDef="first">
+<th mat-header-cell *matHeaderCellDef mat-sort-header>نام</th>
+<td mat-cell *matCellDef="let row">{{row.first}}  </td>
+</ng-container>
+<ng-container matColumnDef="last">
+<th mat-header-cell *matHeaderCellDef mat-sort-header>نام خانوادگی</th>
+<td mat-cell *matCellDef="let row">{{row.last}}  </td>
+</ng-container>
+<ng-container matColumnDef="enLast">
+<th mat-header-cell *matHeaderCellDef mat-sort-header>First Name</th>
+<td mat-cell *matCellDef="let row">{{row.enLast}}  </td>
+</ng-container>
+<ng-container matColumnDef="enFirst">
+<th mat-header-cell *matHeaderCellDef mat-sort-header>Last Name</th>
+<td mat-cell *matCellDef="let row">{{row.enFirst}}  </td>
+</ng-container>
+<ng-container matColumnDef="birth">
+<th mat-header-cell *matHeaderCellDef mat-sort-header>تاریخ تولد</th>
+<td mat-cell *matCellDef="let row">{{row.birth| jalali :'showtime' }}  </td>
+</ng-container>
+<ng-container matColumnDef="nationalCode">
+<th mat-header-cell *matHeaderCellDef mat-sort-header>کدملی/ شماره گذرنامه</th>
+<td mat-cell *matCellDef="let row">{{row.nationalCode}}  </td>
+</ng-container>
+<ng-container matColumnDef="postCode">
+<th mat-header-cell *matHeaderCellDef mat-sort-header>کد پستی</th>
+<td mat-cell *matCellDef="let row">{{row.postCode}}  </td>
+</ng-container>
+<ng-container matColumnDef="tel">
+<th mat-header-cell *matHeaderCellDef mat-sort-header>تلفن ثابت</th>
+<td mat-cell *matCellDef="let row">{{row.tel}}  </td>
+</ng-container>
+<ng-container matColumnDef="mobile">
+<th mat-header-cell *matHeaderCellDef mat-sort-header>تلفن همراه</th>
+<td mat-cell *matCellDef="let row">{{row.mobile}}  </td>
+</ng-container>
+<ng-container matColumnDef="email">
+<th mat-header-cell *matHeaderCellDef mat-sort-header>پست الکترونیکی</th>
+<td mat-cell *matCellDef="let row">{{row.email}}  </td>
+</ng-container>
+<ng-container matColumnDef="address">
+<th mat-header-cell *matHeaderCellDef mat-sort-header>نشانی</th>
+<td mat-cell *matCellDef="let row">{{row.address}}  </td>
+</ng-container>
+<ng-container matColumnDef="organizationId">
+<th mat-header-cell *matHeaderCellDef mat-sort-header>سازمان</th>
+<td mat-cell *matCellDef="let row"> {{row.organization.name }}  </td>
+</ng-container>
+<ng-container matColumnDef="personGroupId">
+<th mat-header-cell *matHeaderCellDef mat-sort-header>گروه شخص</th>
+<td mat-cell *matCellDef="let row"> {{row.personGroup.name }}  </td>
+</ng-container>
+<ng-container matColumnDef="genderId">
+<th mat-header-cell *matHeaderCellDef mat-sort-header>جنسیت</th>
+<td mat-cell *matCellDef="let row"> {{row.gender.name }}  </td>
+</ng-container>
+<ng-container matColumnDef="register">
+<th mat-header-cell *matHeaderCellDef mat-sort-header>زمان ثبت نام</th>
+<td mat-cell *matCellDef="let row">{{row.register| jalali :'showtime' }}  </td>
+</ng-container>
+<ng-container matColumnDef="lastUpdate">
+<th mat-header-cell *matHeaderCellDef mat-sort-header>آخرین بروزرسانی</th>
+<td mat-cell *matCellDef="let row">{{row.lastUpdate| jalali :'showtime' }}  </td>
+</ng-container>
+<ng-container matColumnDef="lastLogin">
+<th mat-header-cell *matHeaderCellDef mat-sort-header>آخرین ورود</th>
+<td mat-cell *matCellDef="let row">{{row.lastLogin| jalali :'showtime' }}  </td>
+</ng-container>
+<ng-container matColumnDef="lastRequest">
+<th mat-header-cell *matHeaderCellDef mat-sort-header>آخرین درخواست</th>
+<td mat-cell *matCellDef="let row">{{row.lastRequest| jalali :'showtime' }}  </td>
+</ng-container>
+<ng-container matColumnDef="lastCall">
+<th mat-header-cell *matHeaderCellDef mat-sort-header>فعالیت</th>
+<td mat-cell *matCellDef="let row">{{row.lastCall| jalali :'showtime' }}  </td>
+</ng-container>
+<ng-container matColumnDef="cardNumber">
+<th mat-header-cell *matHeaderCellDef mat-sort-header>شماره کارت</th>
+<td mat-cell *matCellDef="let row">{{row.cardNumber}}  </td>
+</ng-container>
+<ng-container matColumnDef="walletCredit">
+<th mat-header-cell *matHeaderCellDef mat-sort-header>موجودی کیف پول</th>
+<td mat-cell *matCellDef="let row">{{row.walletCredit| number }}  </td>
+</ng-container>
+<ng-container matColumnDef="mobileToken">
+<th mat-header-cell *matHeaderCellDef mat-sort-header>توکن تلفن همراه</th>
+<td mat-cell *matCellDef="let row">{{row.mobileToken}}  </td>
+</ng-container>
+<ng-container matColumnDef="shaba">
+<th mat-header-cell *matHeaderCellDef mat-sort-header>شبا</th>
+<td mat-cell *matCellDef="let row">{{row.shaba}}  </td>
+</ng-container>
+<ng-container matColumnDef="expireTime">
+<th mat-header-cell *matHeaderCellDef mat-sort-header>انقضاء</th>
+<td mat-cell *matCellDef="let row">{{row.expireTime| jalali :'showtime' }}  </td>
+</ng-container>
+<ng-container matColumnDef="dadName">
+<th mat-header-cell *matHeaderCellDef mat-sort-header>نام پدر</th>
+<td mat-cell *matCellDef="let row">{{row.dadName}}  </td>
+</ng-container>
+<ng-container matColumnDef="parentId">
+<th mat-header-cell *matHeaderCellDef mat-sort-header>کد شهروند اصلی</th>
+<td mat-cell *matCellDef="let row"> {{row.parent.name }}  </td>
+</ng-container>
+<ng-container matColumnDef="familyMemberTypeId">
+<th mat-header-cell *matHeaderCellDef mat-sort-header>نسبت فامیلی</th>
+<td mat-cell *matCellDef="let row"> {{row.familyMemberType.name }}  </td>
+</ng-container>
+<ng-container matColumnDef="provinceId">
+<th mat-header-cell *matHeaderCellDef mat-sort-header>استان محل سکونت</th>
+<td mat-cell *matCellDef="let row"> {{row.province.name }}  </td>
+</ng-container>
+<ng-container matColumnDef="cityId">
+<th mat-header-cell *matHeaderCellDef mat-sort-header>شهر محل سکونت</th>
+<td mat-cell *matCellDef="let row"> {{row.city.name }}  </td>
+</ng-container>
+<ng-container matColumnDef="avb">
+<th mat-header-cell *matHeaderCellDef>فعال</th>
+<td mat-cell *matCellDef="let row">
+<mat-checkbox aria-readonly="" [disabled]="true" [(ngModel)]="row.avb"></mat-checkbox>
+</td>
+</ng-container>
+<ng-container matColumnDef="getEmail">
+<th mat-header-cell *matHeaderCellDef>دریافت ایمیل</th>
+<td mat-cell *matCellDef="let row">
+<mat-checkbox aria-readonly="" [disabled]="true" [(ngModel)]="row.getEmail"></mat-checkbox>
+</td>
+</ng-container>
+<ng-container matColumnDef="getSMS">
+<th mat-header-cell *matHeaderCellDef>دریافت پیامک</th>
+<td mat-cell *matCellDef="let row">
+<mat-checkbox aria-readonly="" [disabled]="true" [(ngModel)]="row.getSMS"></mat-checkbox>
+</td>
+</ng-container>
+<ng-container matColumnDef="mobileConfirmed">
+<th mat-header-cell *matHeaderCellDef>تایید تلفن همراه</th>
+<td mat-cell *matCellDef="let row">
+<mat-checkbox aria-readonly="" [disabled]="true" [(ngModel)]="row.mobileConfirmed"></mat-checkbox>
+</td>
+</ng-container>
+<ng-container matColumnDef="nationalCodeConfirmed">
+<th mat-header-cell *matHeaderCellDef>تایید کدملی</th>
+<td mat-cell *matCellDef="let row">
+<mat-checkbox aria-readonly="" [disabled]="true" [(ngModel)]="row.nationalCodeConfirmed"></mat-checkbox>
+</td>
+</ng-container>
+<ng-container matColumnDef="postCodeConfirmed">
+<th mat-header-cell *matHeaderCellDef>تایید کد پستی</th>
+<td mat-cell *matCellDef="let row">
+<mat-checkbox aria-readonly="" [disabled]="true" [(ngModel)]="row.postCodeConfirmed"></mat-checkbox>
+</td>
+</ng-container>
+<ng-container matColumnDef="emailConfirmed">
+<th mat-header-cell *matHeaderCellDef>تایید پست الکترونیکی</th>
+<td mat-cell *matCellDef="let row">
+<mat-checkbox aria-readonly="" [disabled]="true" [(ngModel)]="row.emailConfirmed"></mat-checkbox>
+</td>
+</ng-container>
+<ng-container matColumnDef="isMaster">
+<th mat-header-cell *matHeaderCellDef>نفر اصلی</th>
+<td mat-cell *matCellDef="let row">
+<mat-checkbox aria-readonly="" [disabled]="true" [(ngModel)]="row.isMaster"></mat-checkbox>
+</td>
+</ng-container>
+<ng-container matColumnDef="act">
+<th mat-header-cell *matHeaderCellDef></th>
+<td dir="ltr" mat-cell *matCellDef="let row ">
+<button (click)="onDelete(row.id)" mat-icon-button aria-label="delete">
+<mat-icon>delete</mat-icon>
+</button>
+<button (click)="onEdit(row.id)" mat-icon-button aria-label="Edit">
+<mat-icon>edit</mat-icon>
+</button>
+</td>
+</ng-container>
+<tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+<tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
+</table>
+</div>
+<mat-paginator [pageSizeOptions]="[5, 10, 20]" [length]="resultsLength" [pageSize]="10" showFirstLastButtons></mat-paginator>
+</div>
+<button class="app-fab--absolute mat-elevation-z8" (click)="openDialog(null)" mat-fab aria-label="جدید">
+<mat-icon>add</mat-icon>
+</button>

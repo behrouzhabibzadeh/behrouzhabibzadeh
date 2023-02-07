@@ -1,0 +1,12 @@
+﻿<mat-form-field class="full-width">
+<mat-label>{{lable}}</mat-label>
+<mat-select [formControl]="selector" id="selector" *ngIf="!isLoading" [(value)]="selectedData"
+(selectionChange)="onChange()">
+<mat-option *ngFor="let i of data" [value]="i.id">
+{{i.name}}
+</mat-option>
+</mat-select>
+<mat-select *ngIf="isLoading"></mat-select>
+<mat-progress-bar *ngIf="isLoading" mode="query"></mat-progress-bar>
+</mat-form-field>
+

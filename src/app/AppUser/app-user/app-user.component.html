@@ -1,0 +1,165 @@
+﻿<div class="container ">
+<div class="loading-shade" *ngIf="isLoadingResults">
+<mat-spinner *ngIf="isLoadingResults"></mat-spinner>
+</div>
+<div class="header">
+<h1> {{prefix}} </h1>
+</div>
+<div fxLayout="row" fxLayout.xs="column" fxLayoutGap="4px" fxLayoutAlign="start center">
+<div fxFlex="0 0 auto">
+<button  class="mat-elevation-z2" matTooltip="پاک کردن فیلتر‌های جستجو"  (click)="onSearchRefresh()" mat-icon-button aria-label="Refresh">
+<mat-icon>refresh</mat-icon>
+</button>
+</div>
+<div fxFlex="0 0 auto">
+<button  class="mat-elevation-z2" matTooltip="جستجو"  (click)="getListData()" mat-icon-button aria-label="Search">
+<mat-icon>search</mat-icon>
+</button>
+</div>
+<div fxFlex="0 0 auto">
+<div fxLayout="row" fxLayoutGap="4px" fxLayoutAlign="start center">
+<mat-checkbox [(ngModel)]="search.hasemail" color="primary"></mat-checkbox>
+<mat-form-field>
+<mat-label>ایمیل</mat-label>
+<input matInput [(ngModel)]="search.email" autocomplete="off" placeholder="ایمیل">
+</mat-form-field>
+</div>
+</div>
+<div fxFlex="0 0 auto">
+<div fxLayout="row" fxLayoutGap="4px" fxLayoutAlign="start center">
+<mat-checkbox [(ngModel)]="search.hasfullName" color="primary"></mat-checkbox>
+<mat-form-field>
+<mat-label>نام و نام خانوادگی</mat-label>
+<input matInput [(ngModel)]="search.fullName" autocomplete="off" placeholder="نام و نام خانوادگی">
+</mat-form-field>
+</div>
+</div>
+<div fxFlex="0 0 auto">
+<div fxLayout="row" fxLayoutGap="4px" fxLayoutAlign="start center">
+<mat-checkbox [(ngModel)]="search.hasmobile" color="primary"></mat-checkbox>
+<mat-form-field>
+<mat-label>تلفن همراه</mat-label>
+<input matInput [(ngModel)]="search.mobile" autocomplete="off" placeholder="تلفن همراه">
+</mat-form-field>
+</div>
+</div>
+<div fxFlex="0 0 auto">
+<div fxLayout="row" fxLayoutGap="4px" fxLayoutAlign="start center">
+<mat-checkbox [(ngModel)]="search.hasappUserGroupId" color="primary"></mat-checkbox>
+<app-app-user-group-selector [setDefault]="false"  [selectedID]="search.appUserGroupId" (selected)="onSearchAppUserGroupIdSelected($event)" fxFlex></app-app-user-group-selector>
+
+</div>
+</div>
+<div fxFlex="0 0 auto">
+<div fxLayout="row" fxLayoutGap="4px" fxLayoutAlign="start center">
+<mat-checkbox [(ngModel)]="search.hasroleId" color="primary"></mat-checkbox>
+<app-role-selector [setDefault]="false"  [selectedID]="search.roleId" (selected)="onSearchRoleIdSelected($event)" fxFlex></app-role-selector>
+
+</div>
+</div>
+</div>
+<div class="table-container mat-elevation-z3 ">
+<table mat-table [dataSource]="data" class="mat-elevation-z8" matSort matSortActive="created"
+matSortDisableClear matSortDirection="desc">
+<ng-container matColumnDef="id">
+<th mat-header-cell *matHeaderCellDef mat-sort-header>ثبت</th>
+<td mat-cell *matCellDef="let row">{{row.id}}  </td>
+</ng-container>
+<ng-container matColumnDef="code">
+<th mat-header-cell *matHeaderCellDef mat-sort-header>یکتا</th>
+<td mat-cell *matCellDef="let row">{{row.code}}  </td>
+</ng-container>
+<ng-container matColumnDef="email">
+<th mat-header-cell *matHeaderCellDef mat-sort-header>ایمیل</th>
+<td mat-cell *matCellDef="let row">{{row.email}}  </td>
+</ng-container>
+<ng-container matColumnDef="fullName">
+<th mat-header-cell *matHeaderCellDef mat-sort-header>نام و نام خانوادگی</th>
+<td mat-cell *matCellDef="let row">{{row.fullName}}  </td>
+</ng-container>
+<ng-container matColumnDef="mobile">
+<th mat-header-cell *matHeaderCellDef mat-sort-header>تلفن همراه</th>
+<td mat-cell *matCellDef="let row">{{row.mobile}}  </td>
+</ng-container>
+<ng-container matColumnDef="lastUpdate">
+<th mat-header-cell *matHeaderCellDef mat-sort-header>بروزرسانی</th>
+<td mat-cell *matCellDef="let row">{{row.lastUpdate| jalali :'showtime' }}  </td>
+</ng-container>
+<ng-container matColumnDef="lastCall">
+<th mat-header-cell *matHeaderCellDef mat-sort-header>آخرین درخواست</th>
+<td mat-cell *matCellDef="let row">{{row.lastCall| jalali :'showtime' }}  </td>
+</ng-container>
+<ng-container matColumnDef="bio">
+<th mat-header-cell *matHeaderCellDef mat-sort-header>بیوگرافی</th>
+<td mat-cell *matCellDef="let row">{{row.bio}}  </td>
+</ng-container>
+<ng-container matColumnDef="expire">
+<th mat-header-cell *matHeaderCellDef mat-sort-header>انقضاء</th>
+<td mat-cell *matCellDef="let row">{{row.expire| jalali :'showtime' }}  </td>
+</ng-container>
+<ng-container matColumnDef="register">
+<th mat-header-cell *matHeaderCellDef mat-sort-header>ثبت نام</th>
+<td mat-cell *matCellDef="let row">{{row.register| jalali :'showtime' }}  </td>
+</ng-container>
+<ng-container matColumnDef="mobileToken">
+<th mat-header-cell *matHeaderCellDef mat-sort-header>توکن تلفن همراه</th>
+<td mat-cell *matCellDef="let row">{{row.mobileToken}}  </td>
+</ng-container>
+<ng-container matColumnDef="appUserGroupId">
+<th mat-header-cell *matHeaderCellDef mat-sort-header>گروه کاربر</th>
+<td mat-cell *matCellDef="let row"> {{row.appUserGroup.name }}  </td>
+</ng-container>
+<ng-container matColumnDef="roleId">
+<th mat-header-cell *matHeaderCellDef mat-sort-header>نقش</th>
+<td mat-cell *matCellDef="let row"> {{row.role.name }}  </td>
+</ng-container>
+<ng-container matColumnDef="avb">
+<th mat-header-cell *matHeaderCellDef>فعال</th>
+<td mat-cell *matCellDef="let row">
+<mat-checkbox aria-readonly="" [disabled]="true" [(ngModel)]="row.avb"></mat-checkbox>
+</td>
+</ng-container>
+<ng-container matColumnDef="getEmail">
+<th mat-header-cell *matHeaderCellDef>دریافت ایمیل</th>
+<td mat-cell *matCellDef="let row">
+<mat-checkbox aria-readonly="" [disabled]="true" [(ngModel)]="row.getEmail"></mat-checkbox>
+</td>
+</ng-container>
+<ng-container matColumnDef="getSMS">
+<th mat-header-cell *matHeaderCellDef>دریافت پیامک</th>
+<td mat-cell *matCellDef="let row">
+<mat-checkbox aria-readonly="" [disabled]="true" [(ngModel)]="row.getSMS"></mat-checkbox>
+</td>
+</ng-container>
+<ng-container matColumnDef="inChat">
+<th mat-header-cell *matHeaderCellDef>فعالسازی شسیستم پیام</th>
+<td mat-cell *matCellDef="let row">
+<mat-checkbox aria-readonly="" [disabled]="true" [(ngModel)]="row.inChat"></mat-checkbox>
+</td>
+</ng-container>
+<ng-container matColumnDef="isSysUser">
+<th mat-header-cell *matHeaderCellDef>سیستمی</th>
+<td mat-cell *matCellDef="let row">
+<mat-checkbox aria-readonly="" [disabled]="true" [(ngModel)]="row.isSysUser"></mat-checkbox>
+</td>
+</ng-container>
+<ng-container matColumnDef="act">
+<th mat-header-cell *matHeaderCellDef></th>
+<td dir="ltr" mat-cell *matCellDef="let row ">
+<button (click)="onDelete(row.id)" mat-icon-button aria-label="delete">
+<mat-icon>delete</mat-icon>
+</button>
+<button (click)="onEdit(row.id)" mat-icon-button aria-label="Edit">
+<mat-icon>edit</mat-icon>
+</button>
+</td>
+</ng-container>
+<tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+<tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
+</table>
+</div>
+<mat-paginator [pageSizeOptions]="[5, 10, 20]" [length]="resultsLength" [pageSize]="10" showFirstLastButtons></mat-paginator>
+</div>
+<button class="app-fab--absolute mat-elevation-z8" (click)="openDialog(null)" mat-fab aria-label="جدید">
+<mat-icon>add</mat-icon>
+</button>

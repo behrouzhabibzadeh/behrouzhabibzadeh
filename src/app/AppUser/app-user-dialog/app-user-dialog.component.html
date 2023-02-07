@@ -1,0 +1,98 @@
+﻿<h1 dir="rtl" mat-dialog-title>{{title}}</h1>
+<form name="form" (ngSubmit)="f.form.valid && onSubmit()" #f="ngForm" novalidate>
+<div mat-dialog-content>
+<div class="loading-shade" *ngIf="isLoadingResults">
+<mat-spinner *ngIf="isLoadingResults"></mat-spinner>
+</div>
+<div fxLayout="column" fxLayout.xs="column" fxLayoutGap="8px" fxLayoutAlign="start auto">
+<div fxLayout="row" fxLayout.xs="column" fxLayoutGap="8px" fxLayoutAlign="start auto">
+ <mat-form-field fxFlex>
+<mat-label>ایمیل</mat-label>
+<input matInput id="email" name="email" [(ngModel)]="model.email" required 
+ minlength="2" maxlength="250" type="text" autocomplete="off" #f3="ngModel">
+<mat-error *ngIf="  f3.invalid && (f3.dirty || f3.touched) && f3.errors?.['required']">
+<strong>ایمیل</strong> اجباری است.
+</mat-error>
+<mat-error *ngIf="  f3.invalid && (f3.dirty || f3.touched) && f3.errors?.['minlength']">
+<strong>ایمیل</strong> حداقل 2 حرفی است.
+</mat-error>
+</mat-form-field>
+</div>
+<div fxLayout="row" fxLayout.xs="column" fxLayoutGap="8px" fxLayoutAlign="start auto">
+ <mat-form-field fxFlex>
+<mat-label>نام و نام خانوادگی</mat-label>
+<input matInput id="fullName" name="fullName" [(ngModel)]="model.fullName" required 
+ minlength="2" maxlength="250" type="text" autocomplete="off" #f4="ngModel">
+<mat-error *ngIf="  f4.invalid && (f4.dirty || f4.touched) && f4.errors?.['required']">
+<strong>نام و نام خانوادگی</strong> اجباری است.
+</mat-error>
+<mat-error *ngIf="  f4.invalid && (f4.dirty || f4.touched) && f4.errors?.['minlength']">
+<strong>نام و نام خانوادگی</strong> حداقل 2 حرفی است.
+</mat-error>
+</mat-form-field>
+ <mat-form-field fxFlex>
+<mat-label>تلفن همراه</mat-label>
+<input matInput id="mobile" name="mobile" [(ngModel)]="model.mobile" required 
+ minlength="2" maxlength="11" type="text" autocomplete="off" #f5="ngModel">
+<mat-error *ngIf="  f5.invalid && (f5.dirty || f5.touched) && f5.errors?.['required']">
+<strong>تلفن همراه</strong> اجباری است.
+</mat-error>
+<mat-error *ngIf="  f5.invalid && (f5.dirty || f5.touched) && f5.errors?.['minlength']">
+<strong>تلفن همراه</strong> حداقل 2 حرفی است.
+</mat-error>
+</mat-form-field>
+</div>
+<div fxLayout="row" fxLayout.xs="column" fxLayoutGap="8px" fxLayoutAlign="start auto">
+<app-calendar lable="بروزرسانی"  [selectedDate]="model.lastUpdate" (selected)="onLastUpdateSelected($event)" fxFlex ></app-calendar>
+<app-calendar lable="آخرین درخواست"  [selectedDate]="model.lastCall" (selected)="onLastCallSelected($event)" fxFlex ></app-calendar>
+</div>
+<div fxLayout="row" fxLayout.xs="column" fxLayoutGap="8px" fxLayoutAlign="start auto">
+ <mat-form-field fxFlex>
+<mat-label>بیوگرافی</mat-label>
+<input matInput id="bio" name="bio" [(ngModel)]="model.bio" required 
+ minlength="2" maxlength="500" type="text" autocomplete="off" #f9="ngModel">
+<mat-error *ngIf="  f9.invalid && (f9.dirty || f9.touched) && f9.errors?.['required']">
+<strong>بیوگرافی</strong> اجباری است.
+</mat-error>
+<mat-error *ngIf="  f9.invalid && (f9.dirty || f9.touched) && f9.errors?.['minlength']">
+<strong>بیوگرافی</strong> حداقل 2 حرفی است.
+</mat-error>
+</mat-form-field>
+<app-calendar lable="انقضاء"  [selectedDate]="model.expire" (selected)="onExpireSelected($event)" fxFlex ></app-calendar>
+</div>
+<div fxLayout="row" fxLayout.xs="column" fxLayoutGap="8px" fxLayoutAlign="start auto">
+<app-calendar lable="ثبت نام"  [selectedDate]="model.register" (selected)="onRegisterSelected($event)" fxFlex ></app-calendar>
+ <mat-form-field fxFlex>
+<mat-label>توکن تلفن همراه</mat-label>
+<input matInput id="mobileToken" name="mobileToken" [(ngModel)]="model.mobileToken" required 
+ minlength="2" maxlength="8" type="text" autocomplete="off" #f16="ngModel">
+<mat-error *ngIf="  f16.invalid && (f16.dirty || f16.touched) && f16.errors?.['required']">
+<strong>توکن تلفن همراه</strong> اجباری است.
+</mat-error>
+<mat-error *ngIf="  f16.invalid && (f16.dirty || f16.touched) && f16.errors?.['minlength']">
+<strong>توکن تلفن همراه</strong> حداقل 2 حرفی است.
+</mat-error>
+</mat-form-field>
+</div>
+<div fxLayout="row" fxLayout.xs="column" fxLayoutGap="8px" fxLayoutAlign="start auto">
+<app-app-user-group-selector [setDefault]="false"  [selectedID]="model.appUserGroupId" (selected)="onAppUserGroupIdSelected($event)" fxFlex></app-app-user-group-selector>
+<app-role-selector [setDefault]="false"  [selectedID]="model.roleId" (selected)="onRoleIdSelected($event)" fxFlex></app-role-selector>
+</div>
+<div fxLayout="row" fxLayout.xs="column" fxLayoutGap="8px" fxLayoutAlign="start auto">
+<mat-checkbox fxFlex [(ngModel)]="model.avb" name="avb">فعال</mat-checkbox>
+<mat-checkbox fxFlex [(ngModel)]="model.getEmail" name="getEmail">دریافت ایمیل</mat-checkbox>
+</div>
+<div fxLayout="row" fxLayout.xs="column" fxLayoutGap="8px" fxLayoutAlign="start auto">
+<mat-checkbox fxFlex [(ngModel)]="model.getSMS" name="getSMS">دریافت پیامک</mat-checkbox>
+<mat-checkbox fxFlex [(ngModel)]="model.inChat" name="inChat">فعالسازی شسیستم پیام</mat-checkbox>
+</div>
+<div fxLayout="row" fxLayout.xs="column" fxLayoutGap="8px" fxLayoutAlign="start auto">
+<mat-checkbox fxFlex [(ngModel)]="model.isSysUser" name="isSysUser">سیستمی</mat-checkbox>
+</div>
+<mat-dialog-actions>
+<button mat-raised-button *ngIf="isEdit" [disabled]="!f.valid" type="submit">ویرایش</button>
+<button mat-raised-button *ngIf="!isEdit" [disabled]="!f.valid" type="submit">ثبت</button>
+<button mat-raised-button (click)="onNoClick()" type="reset">انصراف</button>
+</mat-dialog-actions>
+</div>
+</form>

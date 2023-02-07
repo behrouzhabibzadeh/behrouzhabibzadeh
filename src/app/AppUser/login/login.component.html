@@ -1,0 +1,58 @@
+<div *ngIf="!api.isAuth" style="margin-top: 32px" fxLayout="column" fxLayoutAlign="center center" fxLayoutGap="10px">
+  <div class="loading-shade" *ngIf="isLoadingResults">
+    <mat-spinner *ngIf="isLoadingResults"></mat-spinner>
+  </div>
+  <div fxFlex>
+    <mat-card>
+      <img src="./assets/image/applogo.svg" alt="" />
+
+      <form name="form" (ngSubmit)="f.form.valid && login(f.value)" #f="ngForm" novalidate>
+        <div mat-dialog-content>
+          <mat-form-field class="full-width">
+            <mat-label>شناسه کاربری</mat-label>
+            <label for="username">
+              Username
+            </label>
+              <input matInput id="username" name="username" [(ngModel)]="model.username" required minlength="3"
+              maxlength="50" autocomplete="off" #f1="ngModel" />
+            <mat-error *ngIf="
+                f1.invalid && (f1.dirty || f1.touched) && f1.errors?.['required']
+              ">
+              <strong>شناسه کاربری </strong> اجباری است.
+            </mat-error>
+          </mat-form-field>
+          <mat-form-field class="full-width">
+            <mat-label>رمز ورود</mat-label>
+            <label for="password">
+              Password
+            </label>
+            <input matInput id="password" name="password" [(ngModel)]="model.password" required minlength="6"
+              maxlength="50" type="password" autocomplete="off" #f1="ngModel" />
+            <mat-error *ngIf="
+                f1.invalid && (f1.dirty || f1.touched) && f1.errors?.['required']
+              ">
+              <strong>رمز ورود </strong> اجباری است.
+            </mat-error>
+          </mat-form-field>
+        </div>
+
+        <button style="margin-left: 10px" mat-raised-button [disabled]="!f.valid" type="submit">
+          ورود
+        </button>
+        <button mat-raised-button (click)="onNoClick()" type="reset">
+          انصراف
+        </button>
+      </form>
+    </mat-card>
+  </div>
+
+  <div fxFlex style="direction: ltr;">
+    <small style="
+        padding-top: 16px;
+        color: gray;
+        font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        text-align: center;
+        direction: ltr;
+      ">©2022 Jonoub.ir | ver: {{ appversion }}</small>
+  </div>
+</div>

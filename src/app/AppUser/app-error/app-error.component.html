@@ -1,0 +1,94 @@
+<div class="container ">
+  <div class="loading-shade" *ngIf="isLoadingResults">
+      <mat-spinner *ngIf="isLoadingResults"></mat-spinner>
+  </div>
+  <div class="header">
+      <h1> {{prefix}} </h1>
+  </div>
+  <div fxLayout="row" fxLayout.xs="column" fxLayoutGap="4px" fxLayoutAlign="start center">
+      <div fxFlex="0 0 auto">
+          <button class="mat-elevation-z2" matTooltip="پاک کردن فیلتر‌های جستجو" (click)="onSearchRefresh()"
+              mat-icon-button aria-label="Refresh">
+              <mat-icon>refresh</mat-icon>
+          </button>
+      </div>
+      <div fxFlex="0 0 auto">
+          <button class="mat-elevation-z2" matTooltip="جستجو" (click)="getListData()" mat-icon-button
+              aria-label="Search">
+              <mat-icon>search</mat-icon>
+          </button>
+      </div>
+      <div fxFlex="0 0 auto">
+          <div fxLayout="row" fxLayoutGap="4px" fxLayoutAlign="start center">
+              <mat-checkbox [(ngModel)]="search.hasdes" color="primary"></mat-checkbox>
+              <mat-form-field>
+                  <mat-label>توضیحات</mat-label>
+                  <input matInput [(ngModel)]="search.des" autocomplete="off" placeholder="توضیحات">
+              </mat-form-field>
+          </div>
+      </div>
+      <div fxFlex="0 0 auto">
+          <div fxLayout="row" fxLayoutGap="4px" fxLayoutAlign="start center">
+              <mat-checkbox [(ngModel)]="search.haspart" color="primary"></mat-checkbox>
+              <mat-form-field>
+                  <mat-label>بخش</mat-label>
+                  <input matInput [(ngModel)]="search.part" autocomplete="off" placeholder="بخش">
+              </mat-form-field>
+          </div>
+      </div>
+      <div fxFlex="0 0 auto">
+          <div fxLayout="row" fxLayoutGap="4px" fxLayoutAlign="start center">
+              <mat-checkbox [(ngModel)]="search.hastime" color="primary"></mat-checkbox>
+              <mat-form-field>
+                  <mat-label>زمان</mat-label>
+                  <input matInput [(ngModel)]="search.time" autocomplete="off" placeholder="زمان">
+              </mat-form-field>
+          </div>
+      </div>
+  </div>
+  <div class="table-container mat-elevation-z3 ">
+      <table mat-table [dataSource]="data" class="mat-elevation-z8" matSort matSortActive="created"
+          matSortDisableClear matSortDirection="desc">
+          <ng-container matColumnDef="id">
+              <th mat-header-cell *matHeaderCellDef mat-sort-header>ثبت</th>
+              <td mat-cell *matCellDef="let row">{{row.id}} </td>
+          </ng-container>
+          <ng-container matColumnDef="des">
+              <th mat-header-cell *matHeaderCellDef mat-sort-header>توضیحات</th>
+              <td mat-cell *matCellDef="let row">{{row.des}} </td>
+          </ng-container>
+          <ng-container matColumnDef="part">
+              <th mat-header-cell *matHeaderCellDef mat-sort-header>بخش</th>
+              <td mat-cell *matCellDef="let row">{{row.part}} </td>
+          </ng-container>
+          <ng-container matColumnDef="time">
+              <th mat-header-cell *matHeaderCellDef mat-sort-header>زمان</th>
+              <td mat-cell *matCellDef="let row">{{row.time| jalali :'showtime' }} </td>
+          </ng-container>
+          <ng-container matColumnDef="cheched">
+              <th mat-header-cell *matHeaderCellDef>بررسی شده</th>
+              <td mat-cell *matCellDef="let row">
+                  <mat-checkbox aria-readonly="" [disabled]="true" [(ngModel)]="row.cheched"></mat-checkbox>
+              </td>
+          </ng-container>
+          <ng-container matColumnDef="act">
+              <th mat-header-cell *matHeaderCellDef></th>
+              <td dir="ltr" mat-cell *matCellDef="let row ">
+                  <!-- <button (click)="onDelete(row.id)" mat-icon-button aria-label="delete">
+                      <mat-icon>delete</mat-icon>
+                  </button> -->
+                  <button (click)="onEdit(row.id)" mat-icon-button aria-label="Edit">
+                      <mat-icon>edit</mat-icon>
+                  </button>
+              </td>
+          </ng-container>
+          <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+          <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
+      </table>
+  </div>
+  <mat-paginator [pageSizeOptions]="[5, 10, 20]" [length]="resultsLength" [pageSize]="10" showFirstLastButtons>
+  </mat-paginator>
+</div>
+<!-- <button class="app-fab--absolute mat-elevation-z8" (click)="openDialog(null)" mat-fab aria-label="جدید">
+  <mat-icon>add</mat-icon>
+</button> -->

@@ -1,0 +1,73 @@
+﻿<div class="container ">
+<div class="loading-shade" *ngIf="isLoadingResults">
+<mat-spinner *ngIf="isLoadingResults"></mat-spinner>
+</div>
+<div class="header">
+<h1> {{prefix}} </h1>
+</div>
+<div fxLayout="row" fxLayout.xs="column" fxLayoutGap="4px" fxLayoutAlign="start center">
+<div fxFlex="0 0 auto">
+<button  class="mat-elevation-z2" matTooltip="پاک کردن فیلتر‌های جستجو"  (click)="onSearchRefresh()" mat-icon-button aria-label="Refresh">
+<mat-icon>refresh</mat-icon>
+</button>
+</div>
+<div fxFlex="0 0 auto">
+<button  class="mat-elevation-z2" matTooltip="جستجو"  (click)="getListData()" mat-icon-button aria-label="Search">
+<mat-icon>search</mat-icon>
+</button>
+</div>
+<div fxFlex="0 0 auto">
+<div fxLayout="row" fxLayoutGap="4px" fxLayoutAlign="start center">
+<mat-checkbox [(ngModel)]="search.hasname" color="primary"></mat-checkbox>
+<mat-form-field>
+<mat-label>گروه کاربر</mat-label>
+<input matInput [(ngModel)]="search.name" autocomplete="off" placeholder="گروه کاربر">
+</mat-form-field>
+</div>
+</div>
+</div>
+<div class="table-container mat-elevation-z3 ">
+<table mat-table [dataSource]="data" class="mat-elevation-z8" matSort matSortActive="created"
+matSortDisableClear matSortDirection="desc">
+<ng-container matColumnDef="id">
+<th mat-header-cell *matHeaderCellDef mat-sort-header>ثبت</th>
+<td mat-cell *matCellDef="let row">{{row.id}}  </td>
+</ng-container>
+<ng-container matColumnDef="name">
+<th mat-header-cell *matHeaderCellDef mat-sort-header>گروه کاربر</th>
+<td mat-cell *matCellDef="let row">{{row.name}}  </td>
+</ng-container>
+<ng-container matColumnDef="showIndex">
+<th mat-header-cell *matHeaderCellDef mat-sort-header>چیدمان</th>
+<td mat-cell *matCellDef="let row">{{row.showIndex| number }}  </td>
+</ng-container>
+<ng-container matColumnDef="color">
+<th mat-header-cell *matHeaderCellDef mat-sort-header>رنگ بندی</th>
+<td mat-cell *matCellDef="let row"><div [style.background-color]="row.color" style="height: 16px; width: 16px; "></div>  </td>
+</ng-container>
+<ng-container matColumnDef="avb">
+<th mat-header-cell *matHeaderCellDef>فعال</th>
+<td mat-cell *matCellDef="let row">
+<mat-checkbox aria-readonly="" [disabled]="true" [(ngModel)]="row.avb"></mat-checkbox>
+</td>
+</ng-container>
+<ng-container matColumnDef="act">
+<th mat-header-cell *matHeaderCellDef></th>
+<td dir="ltr" mat-cell *matCellDef="let row ">
+<button (click)="onDelete(row.id)" mat-icon-button aria-label="delete">
+<mat-icon>delete</mat-icon>
+</button>
+<button (click)="onEdit(row.id)" mat-icon-button aria-label="Edit">
+<mat-icon>edit</mat-icon>
+</button>
+</td>
+</ng-container>
+<tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+<tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
+</table>
+</div>
+<mat-paginator [pageSizeOptions]="[5, 10, 20]" [length]="resultsLength" [pageSize]="10" showFirstLastButtons></mat-paginator>
+</div>
+<button class="app-fab--absolute mat-elevation-z8" (click)="openDialog(null)" mat-fab aria-label="جدید">
+<mat-icon>add</mat-icon>
+</button>

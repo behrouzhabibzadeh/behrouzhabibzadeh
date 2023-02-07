@@ -1,0 +1,27 @@
+﻿<h1 dir="rtl" mat-dialog-title>{{title}}</h1>
+<form name="form" (ngSubmit)="f.form.valid && onSubmit()" #f="ngForm" novalidate>
+<div mat-dialog-content>
+<div class="loading-shade" *ngIf="isLoadingResults">
+<mat-spinner *ngIf="isLoadingResults"></mat-spinner>
+</div>
+<div fxLayout="column" fxLayout.xs="column" fxLayoutGap="8px" fxLayoutAlign="start auto">
+ <mat-form-field fxFlex>
+<mat-label>استان</mat-label>
+<input matInput id="name" name="name" [(ngModel)]="model.name" required 
+ minlength="2" maxlength="50" type="text" autocomplete="off" #f2="ngModel">
+<mat-error *ngIf="  f2.invalid && (f2.dirty || f2.touched) && f2.errors?.['required']">
+<strong>استان</strong> اجباری است.
+</mat-error>
+<mat-error *ngIf="  f2.invalid && (f2.dirty || f2.touched) && f2.errors?.['minlength']">
+<strong>استان</strong> حداقل 2 حرفی است.
+</mat-error>
+</mat-form-field>
+<mat-checkbox fxFlex [(ngModel)]="model.avb" name="avb">فعال</mat-checkbox>
+</div>
+<mat-dialog-actions>
+<button mat-raised-button *ngIf="isEdit" [disabled]="!f.valid" type="submit">ویرایش</button>
+<button mat-raised-button *ngIf="!isEdit" [disabled]="!f.valid" type="submit">ثبت</button>
+<button mat-raised-button (click)="onNoClick()" type="reset">انصراف</button>
+</mat-dialog-actions>
+</div>
+</form>
