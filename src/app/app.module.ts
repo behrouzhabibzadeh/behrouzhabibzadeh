@@ -58,6 +58,7 @@ import { AppErrorDialogComponent } from './AppUser/app-error-dialog/app-error-di
 import { AppLogActionSelectorComponent } from './AppUser/app-log-action-selector/app-log-action-selector.component';
 import { IConfig } from 'ngx-mask/lib/ngx-mask.config';
 import { environment } from 'src/environments/environment.prod';
+import { AppUserPasswordDialogComponent } from './AppUser/app-user-password-dialog/app-user-password-dialog.component';
 
 
 
@@ -114,7 +115,8 @@ const maskConfig: Partial<IConfig> = {
     AppUserStationSelectorComponent,
     AppErrorComponent,
     AppErrorDialogComponent,
-    AppLogActionSelectorComponent
+    AppLogActionSelectorComponent,
+    AppUserPasswordDialogComponent
   ],
   imports: [
     BrowserModule,

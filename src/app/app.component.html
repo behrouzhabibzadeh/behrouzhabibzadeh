@@ -1,130 +1,68 @@
-<mat-toolbar *ngIf="authApi.isAuth" color="primary">
-  <!-- <img style="height: 100px" src="/assets/image/logo.svg" /> -->
+﻿<mat-toolbar *ngIf="authApi.isAuth" color="primary">
+  <!-- <img style="height: 25px" src="/assets/image/logo.svg" /> -->
 
   <button mat-button [routerLink]="['/Index']"
-    *ngIf="authApi.menuAccess(['superadmin', 'admin', 'poweroperator', 'operator', 'reporter', 'guest'])">
-    داشبـورد
+    *ngIf="authApi.menuAccess(['superadmin', 'admin', 'poweroperator' , 'operator'])">
+    داشبورد
   </button>
 
-  <button mat-button [routerLink]="['/Cartable']"
-    *ngIf="authApi.menuAccess(['superadmin', 'admin', 'poweroperator',  'operator'])">
-    کـارتابل
-  </button>
-
+  
 
   <div>
     <button *ngIf="authApi.menuAccess(['superadmin', 'admin'])" mat-button [matMenuTriggerFor]="m1">
-      اطلاعات پـایه
+      داده‌های پایه
     </button>
     <mat-menu #m1="matMenu" xPosition="after">
-
-
-      <a [routerLink]="['/Organization']" mat-menu-item>سازمان</a>
-
-
-      <a [routerLink]="['/Station']" mat-menu-item>دپارتمان</a>
-
-
-
-
+      <a [routerLink]="['/Companies']" mat-menu-item>نمونه</a>
+       
     </mat-menu>
   </div>
 
 
 
   <div>
-    <button *ngIf="authApi.menuAccess(['superadmin', 'admin', 'poweroperator' , 'operator'])" mat-button
-      [matMenuTriggerFor]="m2">
-      شهـروندان
+    <button *ngIf="authApi.menuAccess(['superadmin', 'admin', 'poweroperator' , 'operator'])" mat-button [matMenuTriggerFor]="m2">
+     منو اول
     </button>
     <mat-menu #m2="matMenu" xPosition="after">
-      <a [routerLink]="['/Person']" mat-menu-item>شهروند</a>
-      <a [routerLink]="['/PersonTravel']" mat-menu-item>سفر شهروند</a>
-      <a [routerLink]="['/PersonGroup']" mat-menu-item>گروه شهروند</a>
-
-
-
-    </mat-menu>
+      <a [routerLink]="['/Companies']" mat-menu-item>نمونه</a>
+           </mat-menu>
   </div>
 
-  <div>
-    <button *ngIf="authApi.menuAccess(['superadmin', 'admin', 'poweroperator'])" mat-button [matMenuTriggerFor]="m3">
-      سفـرها
+ <div>
+    <button *ngIf="authApi.menuAccess(['superadmin', 'admin', 'poweroperator' , 'operator'])" mat-button [matMenuTriggerFor]="m3">
+     منو دوم
     </button>
     <mat-menu #m3="matMenu" xPosition="after">
-      <a [routerLink]="['/Travel']" mat-menu-item> سفر </a>
-
-      <a [routerLink]="['/TravelPath']" mat-menu-item>مسیر سفر</a>
-      <a [routerLink]="['/TravelType']" mat-menu-item>عنوان سفر</a>
-      <a [routerLink]="['/TravelCost']" mat-menu-item>هزینه سفر</a>
-    </mat-menu>
+      <a [routerLink]="['/Companies']" mat-menu-item>نمونه</a>
+           </mat-menu>
   </div>
 
-  <div>
-    <button *ngIf="authApi.menuAccess(['superadmin', 'admin', 'poweroperator' , 'operator'])" mat-button
-      [matMenuTriggerFor]="m4">
-      درخـواست
+<div>
+    <button *ngIf="authApi.menuAccess(['superadmin', 'admin', 'poweroperator' , 'operator'])" mat-button [matMenuTriggerFor]="m4">
+     منو سوم
     </button>
     <mat-menu #m4="matMenu" xPosition="after">
-      <a [routerLink]="['/PersonRequest']" mat-menu-item>درخواست شهروند</a>
-      <a [routerLink]="['/PersonRequestType']" mat-menu-item>نوع درخواست شهروند</a>
-      <mat-divider><b></b></mat-divider>
-      <a [routerLink]="['/RequestFlow']" mat-menu-item>گردش درخواست</a>
-      <a [routerLink]="['/RequestFlowStation']" mat-menu-item>دپارتمان گردش درخواست</a>
-      <mat-divider></mat-divider>
-      <a [routerLink]="['/PersonReuestStatus']" mat-menu-item>وضعیت درخواست شهروند</a>
-
-    </mat-menu>
+      <a [routerLink]="['/Companies']" mat-menu-item>نمونه</a>
+           </mat-menu>
   </div>
 
-
-
-
-
-  <div>
-    <button *ngIf="authApi.menuAccess(['superadmin', 'admin', 'poweroperator' ])" mat-button
-      [matMenuTriggerFor]="m6">
-      پیـام‌ها
-    </button>
-    <mat-menu #m6="matMenu" xPosition="after">
-      <a [routerLink]="['/AppUserInbox']" mat-menu-item>کـارتابل</a>
-      <a [routerLink]="['/Message']" mat-menu-item>‌پیام‌ها</a>
-
-      <!-- <a [routerLink]="['/SMSLogs']" mat-menu-item>تاریخچه ارسال پیامک</a> -->
-      <!-- <a [routerLink]="['/EmailLogs']" mat-menu-item>تاریخچه ارسال ایمیل</a> -->
-      <!-- <a [routerLink]="['/AppError']" mat-menu-item>تاریخچه خطا</a>
-      <a [routerLink]="['/AppSetting']" mat-menu-item>تنظیمات سامانه</a> -->
-    </mat-menu>
-  </div>
-
-  <div>
-    <button *ngIf="authApi.menuAccess(['superadmin', 'admin'])" mat-button [matMenuTriggerFor]="m7">
-      کـاربر
-    </button>
-    <mat-menu #m7="matMenu" xPosition="after">
-      <a [routerLink]="['/AppUser']" mat-menu-item>کاربر</a>
-      <a [routerLink]="['/AppUserGroup']" mat-menu-item>گروه کاربر</a>
-      <a [routerLink]="['/AppUserStation']" mat-menu-item>دپارتمان کاربر</a>
-
-
-    </mat-menu>
-  </div>
-  <div>
-    <button *ngIf="authApi.menuAccess(['superadmin', 'admin'])" mat-button [matMenuTriggerFor]="m5">
-      تـاریخچه
+<div>
+    <button *ngIf="authApi.menuAccess(['superadmin', 'admin', 'poweroperator' , 'operator'])" mat-button [matMenuTriggerFor]="m5">
+     منو چهارم
     </button>
     <mat-menu #m5="matMenu" xPosition="after">
-      <a [routerLink]="['/PersonRequestHistory']" mat-menu-item>تاریخچه درخواست‌ها</a>
-      <a [routerLink]="['/PersonOrganizationHistory']" mat-menu-item>تاریخچه سازمانی</a>
-    </mat-menu>
+      <a [routerLink]="['/Companies']" mat-menu-item>نمونه</a>
+           </mat-menu>
   </div>
 
-  <div>
-    <button *ngIf="authApi.menuAccess(['superadmin', 'admin'])" mat-button [matMenuTriggerFor]="m8">
-      تنظیمـات
-    </button>
-    <mat-menu #m8="matMenu" xPosition="after">
 
+  <div>
+    <button *ngIf="authApi.menuAccess(['superadmin', 'admin'])" mat-button [matMenuTriggerFor]="m4">
+      تنظیمات
+    </button>
+    <mat-menu #m4="matMenu" xPosition="after">
+      <a [routerLink]="['/AppUsers']" mat-menu-item>کابران</a>
       <a [routerLink]="['/AppLogs']" mat-menu-item>تاریخچه فعالیت</a>
       <!-- <a [routerLink]="['/SMSLogs']" mat-menu-item>تاریخچه ارسال پیامک</a> -->
       <!-- <a [routerLink]="['/EmailLogs']" mat-menu-item>تاریخچه ارسال ایمیل</a> -->
@@ -135,13 +73,12 @@
 
   <span style="flex: 1 1 auto"></span>
 
-
   <div *ngIf="authApi.isAuth" class="profilemenu" mat-icon-button [matMenuTriggerFor]="userMenu">
     <div fxLayout="row">
+      <mat-icon>person</mat-icon>
       <span style="font-size: small; padding-left: 4px">{{
         authApi.getFullName
         }}</span>
-      <mat-icon>person</mat-icon>
     </div>
   </div>
   <mat-menu #userMenu="matMenu" xPosition="after">
@@ -165,7 +102,7 @@
       margin-top: 50px;
     ">
   <div fxLayout="row">
-    <button mat-button>حساب کاربـری</button>
+    <button mat-button>حساب کاربری</button>
     <span style="flex: 1 1 auto"></span>
 
     <div style="

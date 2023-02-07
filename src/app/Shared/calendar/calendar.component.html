@@ -1,6 +1,6 @@
-<mat-form-field class="full-width">
-  <input readonly="{{ _readOnly }}" matInput [matDatepicker]="picker" placeholder="{{ lable }}"
-      [(ngModel)]="dateControl" (dateInput)="onChange($event)" (dateChange)="onChange($event)" />
-  <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
-  <mat-datepicker #picker></mat-datepicker>
+﻿<mat-form-field class="full-width">
+    <input readonly="{{ _readOnly }}" matInput [matDatepicker]="picker" placeholder="{{ lable }}"
+        [(ngModel)]="dateControl" (dateInput)="onChange($event)" (dateChange)="onChange($event)" />
+    <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
+    <mat-datepicker #picker></mat-datepicker>
 </mat-form-field>

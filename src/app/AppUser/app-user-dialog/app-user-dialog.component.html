@@ -8,7 +8,7 @@
 <div fxLayout="row" fxLayout.xs="column" fxLayoutGap="8px" fxLayoutAlign="start auto">
  <mat-form-field fxFlex>
 <mat-label>ایمیل</mat-label>
-<input matInput id="email" name="email" [(ngModel)]="model.email" required 
+<input matInput id="email" name="email" [(ngModel)]="model.email" required
  minlength="2" maxlength="250" type="text" autocomplete="off" #f3="ngModel">
 <mat-error *ngIf="  f3.invalid && (f3.dirty || f3.touched) && f3.errors?.['required']">
 <strong>ایمیل</strong> اجباری است.
@@ -21,7 +21,7 @@
 <div fxLayout="row" fxLayout.xs="column" fxLayoutGap="8px" fxLayoutAlign="start auto">
  <mat-form-field fxFlex>
 <mat-label>نام و نام خانوادگی</mat-label>
-<input matInput id="fullName" name="fullName" [(ngModel)]="model.fullName" required 
+<input matInput id="fullName" name="fullName" [(ngModel)]="model.fullName" required
  minlength="2" maxlength="250" type="text" autocomplete="off" #f4="ngModel">
 <mat-error *ngIf="  f4.invalid && (f4.dirty || f4.touched) && f4.errors?.['required']">
 <strong>نام و نام خانوادگی</strong> اجباری است.
@@ -32,7 +32,7 @@
 </mat-form-field>
  <mat-form-field fxFlex>
 <mat-label>تلفن همراه</mat-label>
-<input matInput id="mobile" name="mobile" [(ngModel)]="model.mobile" required 
+<input matInput id="mobile" name="mobile" [(ngModel)]="model.mobile" required
  minlength="2" maxlength="11" type="text" autocomplete="off" #f5="ngModel">
 <mat-error *ngIf="  f5.invalid && (f5.dirty || f5.touched) && f5.errors?.['required']">
 <strong>تلفن همراه</strong> اجباری است.
@@ -49,7 +49,7 @@
 <div fxLayout="row" fxLayout.xs="column" fxLayoutGap="8px" fxLayoutAlign="start auto">
  <mat-form-field fxFlex>
 <mat-label>بیوگرافی</mat-label>
-<input matInput id="bio" name="bio" [(ngModel)]="model.bio" required 
+<input matInput id="bio" name="bio" [(ngModel)]="model.bio" required
  minlength="2" maxlength="500" type="text" autocomplete="off" #f9="ngModel">
 <mat-error *ngIf="  f9.invalid && (f9.dirty || f9.touched) && f9.errors?.['required']">
 <strong>بیوگرافی</strong> اجباری است.
@@ -64,7 +64,7 @@
 <app-calendar lable="ثبت نام"  [selectedDate]="model.register" (selected)="onRegisterSelected($event)" fxFlex ></app-calendar>
  <mat-form-field fxFlex>
 <mat-label>توکن تلفن همراه</mat-label>
-<input matInput id="mobileToken" name="mobileToken" [(ngModel)]="model.mobileToken" required 
+<input matInput id="mobileToken" name="mobileToken" [(ngModel)]="model.mobileToken" required
  minlength="2" maxlength="8" type="text" autocomplete="off" #f16="ngModel">
 <mat-error *ngIf="  f16.invalid && (f16.dirty || f16.touched) && f16.errors?.['required']">
 <strong>توکن تلفن همراه</strong> اجباری است.
@@ -76,7 +76,7 @@
 </div>
 <div fxLayout="row" fxLayout.xs="column" fxLayoutGap="8px" fxLayoutAlign="start auto">
 <app-app-user-group-selector [setDefault]="false"  [selectedID]="model.appUserGroupId" (selected)="onAppUserGroupIdSelected($event)" fxFlex></app-app-user-group-selector>
-<app-role-selector [setDefault]="false"  [selectedID]="model.roleId" (selected)="onRoleIdSelected($event)" fxFlex></app-role-selector>
+<app-app-user-role-selector [setDefault]="false"  [selectedID]="model.roleId" (selected)="onRoleIdSelected($event)" fxFlex></app-app-user-role-selector>
 </div>
 <div fxLayout="row" fxLayout.xs="column" fxLayoutGap="8px" fxLayoutAlign="start auto">
 <mat-checkbox fxFlex [(ngModel)]="model.avb" name="avb">فعال</mat-checkbox>
@@ -95,4 +95,4 @@
 <button mat-raised-button (click)="onNoClick()" type="reset">انصراف</button>
 </mat-dialog-actions>
 </div>
-</form>
+

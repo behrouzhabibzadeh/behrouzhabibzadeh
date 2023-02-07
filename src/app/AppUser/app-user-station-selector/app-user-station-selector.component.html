@@ -3,7 +3,7 @@
 <mat-select [formControl]="selector" id="selector" *ngIf="!isLoading" [(value)]="selectedData"
 (selectionChange)="onChange()">
 <mat-option *ngFor="let i of data" [value]="i.id">
-{{i.name}}
+{{i}}
 </mat-option>
 </mat-select>
 <mat-select *ngIf="isLoading"></mat-select>

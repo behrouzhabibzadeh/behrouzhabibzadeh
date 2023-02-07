@@ -5,7 +5,7 @@
 <mat-spinner *ngIf="isLoadingResults"></mat-spinner>
 </div>
 <div fxLayout="column" fxLayout.xs="column" fxLayoutGap="8px" fxLayoutAlign="start auto">
-<app-station-selector [setDefault]="false"  [selectedID]="model.stationId" (selected)="onStationIdSelected($event)" fxFlex></app-station-selector>
+<!-- <app-station-selector [setDefault]="false"  [selectedID]="model.stationId" (selected)="onStationIdSelected($event)" fxFlex></app-station-selector> -->
 <app-app-user-selector [setDefault]="false"  [selectedID]="model.appUserId" (selected)="onAppUserIdSelected($event)" fxFlex></app-app-user-selector>
 <mat-checkbox fxFlex [(ngModel)]="model.defaultReceiver" name="defaultReceiver">گیرنده پیش فرض</mat-checkbox>
 <mat-checkbox fxFlex [(ngModel)]="model.active" name="active">فعال</mat-checkbox>

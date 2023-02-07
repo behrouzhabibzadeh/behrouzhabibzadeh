@@ -5,7 +5,7 @@ import { MatSort } from '@angular/material/sort';
 import { merge, of as observableOf } from 'rxjs';
 import { startWith, switchMap, map, catchError } from 'rxjs/operators';
 import { ActivatedRoute, Router, NavigationEnd } from '@angular/router';
-import {Base, msgType} from 'src/app/Base';
+import {Base, msgType} from 'src/app/base';
 import {ApiService} from 'src/app/Api/api.service';
 import {PersonGroup} from 'src/app/Models/PersonGroup';
 import {PersonGroupDialogComponent} from '../person-group-dialog/person-group-dialog.component';
@@ -16,12 +16,12 @@ templateUrl: './person-group.component.html',
 })
 export class PersonGroupComponent implements OnInit, AfterViewInit {
   prefix = 'گروه شخص';
-  displayedColumns: string[] = ['id', 
-'name', 
-'avb', 
-'showIndex', 
-'color', 
-'isDefault', 
+  displayedColumns: string[] = ['id',
+'name',
+'avb',
+'showIndex',
+'color',
+'isDefault',
 'act'];
   data: PersonGroup[] = [];
 search: any = {};
@@ -35,10 +35,10 @@ private route: ActivatedRoute,
 private router: Router
 ) {}
 
-@ViewChild(MatPaginator, { static: true }) 
+@ViewChild(MatPaginator, { static: true })
 
 paginator!: MatPaginator;
-@ViewChild(MatSort, { static: true }) 
+@ViewChild(MatSort, { static: true })
 
 sort!: MatSort;
 

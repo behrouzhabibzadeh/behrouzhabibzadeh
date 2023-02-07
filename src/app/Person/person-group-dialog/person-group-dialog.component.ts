@@ -1,6 +1,6 @@
 ﻿import { Component, OnInit, Inject } from '@angular/core';
 import { MatDialogRef, MAT_DIALOG_DATA } from '@angular/material/dialog';
-import {Base, msgType} from 'src/app/Base';
+import {Base, msgType} from 'src/app/base';
 import {ApiService} from 'src/app/Api/api.service';
 import {PersonGroup} from 'src/app/Models/PersonGroup';
 

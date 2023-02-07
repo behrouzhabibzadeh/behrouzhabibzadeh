@@ -5,7 +5,7 @@ import { MatSort } from '@angular/material/sort';
 import { merge, of as observableOf } from 'rxjs';
 import { startWith, switchMap, map, catchError } from 'rxjs/operators';
 import { ActivatedRoute, Router, NavigationEnd } from '@angular/router';
-import {Base, msgType} from 'src/app/Base';
+import {Base, msgType} from 'src/app/base';
 import {ApiService} from 'src/app/Api/api.service';
 import {Person} from 'src/app/Models/Person';
 import {PersonDialogComponent} from '../person-dialog/person-dialog.component';
@@ -16,45 +16,45 @@ templateUrl: './person.component.html',
 })
 export class PersonComponent implements OnInit, AfterViewInit {
   prefix = 'شخص';
-  displayedColumns: string[] = ['id', 
-// 'code', 
-'first', 
-'last', 
-'enLast', 
-'enFirst', 
-'birth', 
-'nationalCode', 
-'postCode', 
-'tel', 
-'mobile', 
-'email', 
-'address', 
-'organizationId', 
-'personGroupId', 
-'genderId', 
-'register', 
-'lastUpdate', 
-'lastLogin', 
-'lastRequest', 
-'lastCall', 
-'cardNumber', 
-'walletCredit', 
-'avb', 
-'getEmail', 
-'getSMS', 
-'mobileToken', 
-'shaba', 
-'mobileConfirmed', 
-'nationalCodeConfirmed', 
-'postCodeConfirmed', 
-'emailConfirmed', 
-'expireTime', 
-'dadName', 
-'isMaster', 
-'parentId', 
-'familyMemberTypeId', 
-'provinceId', 
-'cityId', 
+  displayedColumns: string[] = ['id',
+// 'code',
+'first',
+'last',
+'enLast',
+'enFirst',
+'birth',
+'nationalCode',
+'postCode',
+'tel',
+'mobile',
+'email',
+'address',
+'organizationId',
+'personGroupId',
+'genderId',
+'register',
+'lastUpdate',
+'lastLogin',
+'lastRequest',
+'lastCall',
+'cardNumber',
+'walletCredit',
+'avb',
+'getEmail',
+'getSMS',
+'mobileToken',
+'shaba',
+'mobileConfirmed',
+'nationalCodeConfirmed',
+'postCodeConfirmed',
+'emailConfirmed',
+'expireTime',
+'dadName',
+'isMaster',
+'parentId',
+'familyMemberTypeId',
+'provinceId',
+'cityId',
 'act'];
   data: Person[] = [];
 search: any = {};
@@ -68,10 +68,10 @@ private route: ActivatedRoute,
 private router: Router
 ) {}
 
-@ViewChild(MatPaginator, { static: true }) 
+@ViewChild(MatPaginator, { static: true })
 
 paginator!: MatPaginator;
-@ViewChild(MatSort, { static: true }) 
+@ViewChild(MatSort, { static: true })
 
 sort!: MatSort;
 

@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+﻿import { Component } from '@angular/core';
 import { MatDialog } from '@angular/material/dialog';
 import { AuthService } from './Api/auth.service';
 import { Base } from './base';
@@ -10,8 +10,8 @@ import { Base } from './base';
 })
 export class AppComponent {
   title = 'AppTitle';
-  date  = new Date();
-  appversion =''
+  date:any;
+  appversion:any;
 
   constructor(
     public authApi:AuthService,

@@ -1,46 +1,39 @@
-<h1 dir="rtl" mat-dialog-title>{{title}}</h1>
+﻿<h1 dir="rtl" mat-dialog-title>{{title}}</h1>
 <form name="form" (ngSubmit)="f.form.valid && onSubmit()" #f="ngForm" novalidate>
-    <div mat-dialog-content>
-        <div class="loading-shade" *ngIf="isLoadingResults">
-            <mat-spinner *ngIf="isLoadingResults"></mat-spinner>
-        </div>
-        <div fxLayout="column" fxLayout.xs="column" fxLayoutGap="8px" fxLayoutAlign="start auto">
-
-            <div style="direction: ltr;">
-                {{model.des}}
-            </div>
-
-
-            <!-- <mat-form-field fxFlex>
-                <mat-label>توضیحات</mat-label>
-                <input matInput id="des" name="des" [(ngModel)]="model.des" required minlength="2" maxlength="-1"
-                    type="text" autocomplete="off" #f2="ngModel">
-                <mat-error *ngIf="  f2.invalid && (f2.dirty || f2.touched) && f2.errors?.required">
-                    <strong>توضیحات</strong> اجباری است.
-                </mat-error>
-                <mat-error *ngIf="  f2.invalid && (f2.dirty || f2.touched) && f2.errors?.minlength">
-                    <strong>توضیحات</strong> حداقل 2 حرفی است.
-                </mat-error>
-            </mat-form-field> -->
-            <mat-form-field fxFlex>
-                <mat-label>بخش</mat-label>
-                <input matInput id="part" name="part" [(ngModel)]="model.part" required minlength="2" maxlength="200"
-                    type="text" autocomplete="off" #f3="ngModel">
-                <mat-error *ngIf="  f3.invalid && (f3.dirty || f3.touched) && f3.errors?.required">
-                    <strong>بخش</strong> اجباری است.
-                </mat-error>
-                <mat-error *ngIf="  f3.invalid && (f3.dirty || f3.touched) && f3.errors?.minlength">
-                    <strong>بخش</strong> حداقل 2 حرفی است.
-                </mat-error>
-            </mat-form-field>
-            <app-calendar lable="زمان" [(selectedDate)]="model.time" (selected)="onTimeSelected($event)" fxFlex>
-            </app-calendar>
-            <mat-checkbox fxFlex [(ngModel)]="model.cheched" name="cheched">بررسی شده</mat-checkbox>
-        </div>
-        <mat-dialog-actions>
-            <button mat-raised-button *ngIf="isEdit" [disabled]="!f.valid" type="submit">ویرایش</button>
-            <button mat-raised-button *ngIf="!isEdit" [disabled]="!f.valid" type="submit">ثبت</button>
-            <button mat-raised-button (click)="onNoClick()" type="reset">انصراف</button>
-        </mat-dialog-actions>
-    </div>
+<div mat-dialog-content>
+<div class="loading-shade" *ngIf="isLoadingResults">
+<mat-spinner *ngIf="isLoadingResults"></mat-spinner>
+</div>
+<div fxLayout="column" fxLayout.xs="column" fxLayoutGap="8px" fxLayoutAlign="start auto">
+ <mat-form-field fxFlex>
+<mat-label>توضیحات</mat-label>
+<input matInput id="des" name="des" [(ngModel)]="model.des" required 
+ minlength="2" maxlength="-1" type="text" autocomplete="off" #f2="ngModel">
+<mat-error *ngIf="  f2.invalid && (f2.dirty || f2.touched) && f2.errors?.['required']">
+<strong>توضیحات</strong> اجباری است.
+</mat-error>
+<mat-error *ngIf="  f2.invalid && (f2.dirty || f2.touched) && f2.errors?.['minlength']">
+<strong>توضیحات</strong> حداقل 2 حرفی است.
+</mat-error>
+</mat-form-field>
+ <mat-form-field fxFlex>
+<mat-label>بخش</mat-label>
+<input matInput id="part" name="part" [(ngModel)]="model.part" required 
+ minlength="2" maxlength="200" type="text" autocomplete="off" #f3="ngModel">
+<mat-error *ngIf="  f3.invalid && (f3.dirty || f3.touched) && f3.errors?.['required']">
+<strong>بخش</strong> اجباری است.
+</mat-error>
+<mat-error *ngIf="  f3.invalid && (f3.dirty || f3.touched) && f3.errors?.['minlength']">
+<strong>بخش</strong> حداقل 2 حرفی است.
+</mat-error>
+</mat-form-field>
+<app-calendar lable="زمان"  [selectedDate]="model.time" (selected)="onTimeSelected($event)" fxFlex ></app-calendar>
+<mat-checkbox fxFlex [(ngModel)]="model.cheched" name="cheched">بررسی شده</mat-checkbox>
+</div>
+<mat-dialog-actions>
+<button mat-raised-button *ngIf="isEdit" [disabled]="!f.valid" type="submit">ویرایش</button>
+<button mat-raised-button *ngIf="!isEdit" [disabled]="!f.valid" type="submit">ثبت</button>
+<button mat-raised-button (click)="onNoClick()" type="reset">انصراف</button>
+</mat-dialog-actions>
+</div>
 </form>

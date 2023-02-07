@@ -5,7 +5,7 @@ import { MatSort } from '@angular/material/sort';
 import { merge, of as observableOf } from 'rxjs';
 import { startWith, switchMap, map, catchError } from 'rxjs/operators';
 import { ActivatedRoute, Router, NavigationEnd } from '@angular/router';
-import {Base, msgType} from 'src/app/Base';
+import {Base, msgType} from 'src/app/base';
 import {ApiService} from 'src/app/Api/api.service';
 import {Organization} from 'src/app/Models/Organization';
 import {OrganizationDialogComponent} from '../organization-dialog/organization-dialog.component';
@@ -16,10 +16,10 @@ templateUrl: './organization.component.html',
 })
 export class OrganizationComponent implements OnInit, AfterViewInit {
   prefix = 'سازمان';
-  displayedColumns: string[] = ['id', 
-'name', 
-'avb', 
-'color', 
+  displayedColumns: string[] = ['id',
+'name',
+'avb',
+'color',
 'act'];
   data: Organization[] = [];
 search: any = {};
@@ -33,10 +33,10 @@ private route: ActivatedRoute,
 private router: Router
 ) {}
 
-@ViewChild(MatPaginator, { static: true }) 
+@ViewChild(MatPaginator, { static: true })
 
 paginator!: MatPaginator;
-@ViewChild(MatSort, { static: true }) 
+@ViewChild(MatSort, { static: true })
 
 sort!: MatSort;
 

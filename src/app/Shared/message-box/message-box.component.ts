@@ -1,4 +1,4 @@
-import {
+﻿import {
   AfterContentChecked,
   AfterViewChecked,
   AfterViewInit,
@@ -15,7 +15,7 @@ import { msgType } from 'src/app/base';
   styleUrls: ['./message-box.component.css'],
 })
 export class MessageBoxComponent implements OnInit, AfterViewInit {
-  _msg  = '';
+  _msg:any;
   _color = 'gray';
   _textcolor = 'white';
 

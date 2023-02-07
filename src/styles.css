@@ -1,4 +1,4 @@
-@font-face {
+﻿@font-face {
   font-family: "Material Icons";
   font-style: normal;
   font-weight: 400;
@@ -135,7 +135,6 @@ span {
 
 .mat-toolbar {
   font-family: IRANSans !important;
-  direction: rtl;
 }
 .full-width {
   width: 100%;
@@ -367,8 +366,3 @@ th {
   padding: 4px;
   min-height: 500px;
 }
-
-@import '~bootstrap/dist/css/bootstrap.min.css';
-
-html, body { height: 100%; }
-body { margin: 0; font-family: Roboto, "Helvetica Neue", sans-serif; }

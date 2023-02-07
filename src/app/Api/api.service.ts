@@ -13,6 +13,7 @@ import { ProvinceList, Province } from '../Models/Province';
 import { AppUserStationList, AppUserStation } from '../Models/AppUserStation';
 import { AppErrorList, AppError } from '../Models/AppError';
 import { AppLogActionList, AppLogAction } from '../Models/AppLogAction';
+import { AppLogList, AppLog } from '../Models/AppLog';
 @Injectable({
   providedIn: 'root'
 })
@@ -23,6 +24,11 @@ export class ApiService {
     private base: ConfigService
 
   ) { }
+
+
+  public putAppUserPassword(entity: any) {
+    return this.http.put(this.base.ServerUrl + `/api/AppUsers/ChangePass/${entity.AppUserId}`, entity);
+  }
 
 
 //AppUserGroup
@@ -363,6 +369,35 @@ getAppLogActions(sort: string, direction: string, pageIndex: number, pageSize: n
 
   public postAppLogAction(entity: AppLogAction) {
    return this.http.post<any>(this.base.ServerUrl + '/api/AppLogActions',  entity ) ;}
+
+
+
+
+//AppLog
+getAppLogs(sort: string, direction: string, pageIndex: number, pageSize: number, filter: any) {
+  const requestUrl = `${this.base.ServerUrl + '/api/AppLogs'}/${pageIndex + 1}/${pageSize}/${sort}/${direction}/${JSON.stringify(filter)}`;
+  return this.http.get<AppLogList>(requestUrl)}
+
+  getActiveAppLogs() {
+  return this.http.get<AppLog[]>(`${this.base.ServerUrl + '/api/AppLogs'}`)
+
+  }
+
+  getAppLogByID(id: string) {
+  return this.http.get<AppLog>(this.base.ServerUrl + `/api/AppLogs/${id}`)
+
+  }
+
+  public putAppLog(entity: AppLog) {
+  return this.http.put(this.base.ServerUrl + `/api/AppLogs/${entity.id }`, entity);
+  }
+
+  deleteAppLog(entityID: any) {
+    return this.http.delete(this.base.ServerUrl + `/api/AppLogs/${entityID}`);
+  }
+
+  public postAppLog(entity: AppLog) {
+   return this.http.post<any>(this.base.ServerUrl + '/api/AppLogs',  entity ) ;}
 
 
 }

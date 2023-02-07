@@ -5,7 +5,7 @@ import { MatSort } from '@angular/material/sort';
 import { merge, of as observableOf } from 'rxjs';
 import { startWith, switchMap, map, catchError } from 'rxjs/operators';
 import { ActivatedRoute, Router, NavigationEnd } from '@angular/router';
-import {Base, msgType} from 'src/app/Base';
+import {Base, msgType} from 'src/app/base';
 import {ApiService} from 'src/app/Api/api.service';
 import {City} from 'src/app/Models/City';
 import {CityDialogComponent} from '../city-dialog/city-dialog.component';
@@ -16,11 +16,11 @@ templateUrl: './city.component.html',
 })
 export class CityComponent implements OnInit, AfterViewInit {
   prefix = 'شهر';
-  displayedColumns: string[] = ['id', 
-'provinceId', 
-'name', 
-'showIndex', 
-'avb', 
+  displayedColumns: string[] = ['id',
+'provinceId',
+'name',
+'showIndex',
+'avb',
 'act'];
   data: City[] = [];
 search: any = {};
@@ -34,10 +34,10 @@ private route: ActivatedRoute,
 private router: Router
 ) {}
 
-@ViewChild(MatPaginator, { static: true }) 
+@ViewChild(MatPaginator, { static: true })
 
 paginator!: MatPaginator;
-@ViewChild(MatSort, { static: true }) 
+@ViewChild(MatSort, { static: true })
 
 sort!: MatSort;
 

@@ -5,7 +5,7 @@ import { MatSort } from '@angular/material/sort';
 import { merge, of as observableOf } from 'rxjs';
 import { startWith, switchMap, map, catchError } from 'rxjs/operators';
 import { ActivatedRoute, Router, NavigationEnd } from '@angular/router';
-import {Base, msgType} from 'src/app/Base';
+import {Base, msgType} from 'src/app/base';
 import {ApiService} from 'src/app/Api/api.service';
 import {AppUser} from 'src/app/Models/AppUser';
 import {AppUserDialogComponent} from '../app-user-dialog/app-user-dialog.component';
@@ -16,24 +16,24 @@ templateUrl: './app-user.component.html',
 })
 export class AppUserComponent implements OnInit, AfterViewInit {
   prefix = 'کاربر';
-  displayedColumns: string[] = ['id', 
-// 'code', 
-'email', 
-'fullName', 
-'mobile', 
-'avb', 
-'lastUpdate', 
-'lastCall', 
-// 'bio', 
-'getEmail', 
-'getSMS', 
-'inChat', 
-'expire', 
-'isSysUser', 
-'register', 
-'mobileToken', 
-'appUserGroupId', 
-'roleId', 
+  displayedColumns: string[] = ['id',
+// 'code',
+'email',
+'fullName',
+'mobile',
+'avb',
+'lastUpdate',
+'lastCall',
+// 'bio',
+'getEmail',
+'getSMS',
+'inChat',
+'expire',
+'isSysUser',
+'register',
+'mobileToken',
+'appUserGroupId',
+'roleId',
 'act'];
   data: AppUser[] = [];
 search: any = {};
@@ -47,10 +47,10 @@ private route: ActivatedRoute,
 private router: Router
 ) {}
 
-@ViewChild(MatPaginator, { static: true }) 
+@ViewChild(MatPaginator, { static: true })
 
 paginator!: MatPaginator;
-@ViewChild(MatSort, { static: true }) 
+@ViewChild(MatSort, { static: true })
 
 sort!: MatSort;
 

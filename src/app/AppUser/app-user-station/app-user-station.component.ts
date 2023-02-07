@@ -5,7 +5,7 @@ import { MatSort } from '@angular/material/sort';
 import { merge, of as observableOf } from 'rxjs';
 import { startWith, switchMap, map, catchError } from 'rxjs/operators';
 import { ActivatedRoute, Router, NavigationEnd } from '@angular/router';
-import {Base, msgType} from 'src/app/Base';
+import {Base, msgType} from 'src/app/base';
 import {ApiService} from 'src/app/Api/api.service';
 import {AppUserStation} from 'src/app/Models/AppUserStation';
 import {AppUserStationDialogComponent} from '../app-user-station-dialog/app-user-station-dialog.component';
@@ -16,11 +16,11 @@ templateUrl: './app-user-station.component.html',
 })
 export class AppUserStationComponent implements OnInit, AfterViewInit {
   prefix = 'ایستگاه کاربر';
-  displayedColumns: string[] = ['id', 
-'stationId', 
-'appUserId', 
-'defaultReceiver', 
-'active', 
+  displayedColumns: string[] = ['id',
+'stationId',
+'appUserId',
+'defaultReceiver',
+'active',
 'act'];
   data: AppUserStation[] = [];
 search: any = {};
@@ -34,10 +34,10 @@ private route: ActivatedRoute,
 private router: Router
 ) {}
 
-@ViewChild(MatPaginator, { static: true }) 
+@ViewChild(MatPaginator, { static: true })
 
 paginator!: MatPaginator;
-@ViewChild(MatSort, { static: true }) 
+@ViewChild(MatSort, { static: true })
 
 sort!: MatSort;
 

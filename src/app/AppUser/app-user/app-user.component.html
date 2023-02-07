@@ -53,7 +53,7 @@
 <div fxFlex="0 0 auto">
 <div fxLayout="row" fxLayoutGap="4px" fxLayoutAlign="start center">
 <mat-checkbox [(ngModel)]="search.hasroleId" color="primary"></mat-checkbox>
-<app-role-selector [setDefault]="false"  [selectedID]="search.roleId" (selected)="onSearchRoleIdSelected($event)" fxFlex></app-role-selector>
+<app-app-user-role-selector [setDefault]="false"  [selectedID]="search.roleId" (selected)="onSearchRoleIdSelected($event)" fxFlex></app-app-user-role-selector>
 
 </div>
 </div>

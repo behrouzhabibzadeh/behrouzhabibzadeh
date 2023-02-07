@@ -8,7 +8,7 @@
 <div fxLayout="row" fxLayout.xs="column" fxLayoutGap="8px" fxLayoutAlign="start auto">
  <mat-form-field fxFlex>
 <mat-label>نام</mat-label>
-<input matInput id="first" name="first" [(ngModel)]="model.first" required 
+<input matInput id="first" name="first" [(ngModel)]="model.first" required
  minlength="2" maxlength="250" type="text" autocomplete="off" #f3="ngModel">
 <mat-error *ngIf="  f3.invalid && (f3.dirty || f3.touched) && f3.errors?.['required']">
 <strong>نام</strong> اجباری است.
@@ -19,7 +19,7 @@
 </mat-form-field>
  <mat-form-field fxFlex>
 <mat-label>نام خانوادگی</mat-label>
-<input matInput id="last" name="last" [(ngModel)]="model.last" required 
+<input matInput id="last" name="last" [(ngModel)]="model.last" required
  minlength="2" maxlength="250" type="text" autocomplete="off" #f4="ngModel">
 <mat-error *ngIf="  f4.invalid && (f4.dirty || f4.touched) && f4.errors?.['required']">
 <strong>نام خانوادگی</strong> اجباری است.
@@ -49,7 +49,7 @@
 <div fxLayout="row" fxLayout.xs="column" fxLayoutGap="8px" fxLayoutAlign="start auto">
  <mat-form-field fxFlex>
 <mat-label>کدملی/ شماره گذرنامه</mat-label>
-<input matInput id="nationalCode" name="nationalCode" [(ngModel)]="model.nationalCode" required 
+<input matInput id="nationalCode" name="nationalCode" [(ngModel)]="model.nationalCode" required
  minlength="2" maxlength="10" type="text" autocomplete="off" #f8="ngModel">
 <mat-error *ngIf="  f8.invalid && (f8.dirty || f8.touched) && f8.errors?.['required']">
 <strong>کدملی/ شماره گذرنامه</strong> اجباری است.
@@ -76,7 +76,7 @@
 <div fxLayout="row" fxLayout.xs="column" fxLayoutGap="8px" fxLayoutAlign="start auto">
  <mat-form-field fxFlex>
 <mat-label>تلفن همراه</mat-label>
-<input matInput id="mobile" name="mobile" [(ngModel)]="model.mobile" required 
+<input matInput id="mobile" name="mobile" [(ngModel)]="model.mobile" required
  minlength="2" maxlength="11" type="text" autocomplete="off" #f11="ngModel">
 <mat-error *ngIf="  f11.invalid && (f11.dirty || f11.touched) && f11.errors?.['required']">
 <strong>تلفن همراه</strong> اجباری است.
@@ -87,7 +87,7 @@
 </mat-form-field>
  <mat-form-field fxFlex>
 <mat-label>پست الکترونیکی</mat-label>
-<input matInput id="email" name="email" [(ngModel)]="model.email" required 
+<input matInput id="email" name="email" [(ngModel)]="model.email" required
  minlength="2" maxlength="250" type="text" autocomplete="off" #f12="ngModel">
 <mat-error *ngIf="  f12.invalid && (f12.dirty || f12.touched) && f12.errors?.['required']">
 <strong>پست الکترونیکی</strong> اجباری است.
@@ -128,14 +128,14 @@
 <div fxLayout="row" fxLayout.xs="column" fxLayoutGap="8px" fxLayoutAlign="start auto">
  <mat-form-field fxFlex>
 <mat-label>موجودی کیف پول</mat-label>
-<input matInput id="walletCredit" name="walletCredit" [(ngModel)]="model.walletCredit"  type="number" maxlength="10"  pattern="^[+]?([0-9]+(?:[\.][0-9]*)?|\.[0-9]+)$" autocomplete="off" #f23="ngModel"> 
+<input matInput id="walletCredit" name="walletCredit" [(ngModel)]="model.walletCredit"  type="number" maxlength="10"  pattern="^[+]?([0-9]+(?:[\.][0-9]*)?|\.[0-9]+)$" autocomplete="off" #f23="ngModel">
 <mat-error *ngIf="  f23.invalid && (f23.dirty || f23.touched) && f23.errors?.['pattern']">
 <strong>موجودی کیف پول</strong> باید با ارقام ثبت شود.
 </mat-error>
 </mat-form-field>
  <mat-form-field fxFlex>
 <mat-label>توکن تلفن همراه</mat-label>
-<input matInput id="mobileToken" name="mobileToken" [(ngModel)]="model.mobileToken" required 
+<input matInput id="mobileToken" name="mobileToken" [(ngModel)]="model.mobileToken" required
  minlength="2" maxlength="8" type="text" autocomplete="off" #f27="ngModel">
 <mat-error *ngIf="  f27.invalid && (f27.dirty || f27.touched) && f27.errors?.['required']">
 <strong>توکن تلفن همراه</strong> اجباری است.
@@ -156,7 +156,7 @@
 <app-calendar lable="انقضاء"  [selectedDate]="model.expireTime" (selected)="onExpireTimeSelected($event)" fxFlex ></app-calendar>
  <mat-form-field fxFlex>
 <mat-label>نام پدر</mat-label>
-<input matInput id="dadName" name="dadName" [(ngModel)]="model.dadName" required 
+<input matInput id="dadName" name="dadName" [(ngModel)]="model.dadName" required
  minlength="2" maxlength="200" type="text" autocomplete="off" #f34="ngModel">
 <mat-error *ngIf="  f34.invalid && (f34.dirty || f34.touched) && f34.errors?.['required']">
 <strong>نام پدر</strong> اجباری است.
@@ -165,10 +165,10 @@
 <strong>نام پدر</strong> حداقل 2 حرفی است.
 </mat-error>
 </mat-form-field>
-<app-parent-selector [setDefault]="false"  [selectedID]="model.parentId" (selected)="onParentIdSelected($event)" fxFlex></app-parent-selector>
+<!-- <app-parent-selector [setDefault]="false"  [selectedID]="model.parentId" (selected)="onParentIdSelected($event)" fxFlex></app-parent-selector> -->
 </div>
 <div fxLayout="row" fxLayout.xs="column" fxLayoutGap="8px" fxLayoutAlign="start auto">
-<app-family-member-type-selector [setDefault]="false"  [selectedID]="model.familyMemberTypeId" (selected)="onFamilyMemberTypeIdSelected($event)" fxFlex></app-family-member-type-selector>
+<!-- <app-family-member-type-selector [setDefault]="false"  [selectedID]="model.familyMemberTypeId" (selected)="onFamilyMemberTypeIdSelected($event)" fxFlex></app-family-member-type-selector> -->
 <app-province-selector [setDefault]="false"  [selectedID]="model.provinceId" (selected)="onProvinceIdSelected($event)" fxFlex></app-province-selector>
 <app-city-selector [setDefault]="false"  [selectedID]="model.cityId" (selected)="onCityIdSelected($event)" fxFlex></app-city-selector>
 </div>
@@ -192,4 +192,4 @@
 <button mat-raised-button (click)="onNoClick()" type="reset">انصراف</button>
 </mat-dialog-actions>
 </div>
-</form>
+

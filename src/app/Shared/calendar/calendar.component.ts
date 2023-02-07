@@ -1,4 +1,4 @@
-import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
+﻿import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
 import { MatDatepickerInputEvent } from '@angular/material/datepicker';
 import * as moment from 'jalali-moment';
 
@@ -8,16 +8,16 @@ import * as moment from 'jalali-moment';
   styleUrls: ['./calendar.component.css']
 })
 export class CalendarComponent implements OnInit {
-  dateControl :any ;
+  dateControl:any;
   @Input() lable = 'تاریخ';
   @Output() selected = new EventEmitter<string>();
-  private _date :any ;
+  private _date:any;
   showSpinners = true;
   showSeconds = true;
   stepHour = true;
   stepMinute = true;
   stepSecond = true;
-  _readOnly = false;
+  _readOnly:any;
 
   _initnull = false;
 
@@ -54,7 +54,7 @@ export class CalendarComponent implements OnInit {
   fill() {
     if (!this._initnull && !this._date) {
       if (!this._date) this._date = new Date();
-      const date = moment.from(this._date.toString(), 'en').utc(true).toJSON();
+      const date = moment.from(this._date, 'en').utc(true).toJSON();
       this.dateControl = date.toString().split('T')[0].replace('"', '');
       this.selected.emit(this.dateControl);
     }
